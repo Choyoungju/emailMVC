@@ -20,7 +20,7 @@ public class EmailListActionFactory extends ActionFactory {
 		}
 			
 	
-		return null;
+		return action;
 	}
 
 }

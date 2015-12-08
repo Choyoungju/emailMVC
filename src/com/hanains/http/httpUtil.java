@@ -14,10 +14,14 @@ public class httpUtil {
 		
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
+		System.out.println("포워딩 끝");
 	}
 	
 	public static void redirect(HttpServletResponse response, String url)
 			throws ServletException, IOException{
 		response.sendRedirect(url);
+		System.out.println("리다이렉팅");
 	}
+		
+	
 }

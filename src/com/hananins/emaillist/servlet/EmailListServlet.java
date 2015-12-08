@@ -46,9 +46,11 @@ public class EmailListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		ActionFactory actionFactory = new EmailListActionFactory();
-		
+	
 		String actionName = request.getParameter("a");
+	
 		Action action = actionFactory.getAction(actionName);
+	
 		action.execute(request, response);
 
 		
