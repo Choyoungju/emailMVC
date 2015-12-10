@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "com.hanains.email.dao.EmailListDao" %>
 <%@ page import = "com.hanains.email.vo.EmailVo" %>
@@ -18,44 +21,35 @@
 	<!-- 메일정보 리스트 -->
 	<%-- list에서 하나씩 빼서 테이블를 채운다--%>
 	
-	<%
-	for(EmailVo vo : list){
+
+	<c:set var = "count" value = "${fn:length(list)}"/>
+	--${count}--
+	<c:forEach items = "${list }" var = "vo" varStatus = "status">
 	
-	%>
 	<table border="1" cellpadding="5" cellspacing="2">
 		<tr>
+		<td colspan="2"> ${status.index } : ${status.count } </td>
+		<td>count : ${count-status.index }</td>
+		</tr>
+		
+		<tr>
 			<td align=right>First name: </td>
-			<td>안</td>
+			<td>${vo.firstName }</td>
 		</tr>
 		<tr>
 			<td align=right width="110">Last name: </td>
-			<td width="110">대혁</td>
+			<td width="110">${vo.lastName }</td>
 		</tr>
 		<tr>
 			<td align=right>Email address: </td>
-			<td>kickscar@gmail.com</td>
+			<td>${vo.email }</td>
 		</tr>
 	</table>
 	
-	<table border="1" cellpadding="5" cellspacing="2">
-		<tr>
-			<td align=right>First name: </td>
-			<td><%=vo.getFirstName() %></td>
-		</tr>
-		<tr>
-			<td align=right width="110">Last name: </td>
-			<td width="110"><%=vo.getLastName() %></td>
-		</tr>
-		<tr>
-			<td align=right>Email address: </td>
-			<td><%=vo.getEmail() %></td>
-		</tr>
+
 	</table>
 	<br>
-		<%
-	
-	}
-	%>
+</c:forEach>
 	<p>
 		<a href = "/emailList2/el?a=form"> 추가메일 등록</a>  머해야됨
 	</p>
